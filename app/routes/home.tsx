@@ -2,6 +2,8 @@ import Navbar from "components/Navbar";
 import type { Route } from "./+types/home";
 import { ArrowRight, ArrowUpRight, Clock, Layers } from "lucide-react";
 import Button from "components/ui/Button";
+import Upload from "components/Upload";
+import {useNavigate} from "react-router";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -12,6 +14,15 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
+
+    const handleUploadComplete = async (base64Image: string) => {
+        const newId = Date.now().toString();
+
+        navigate(`/visualizer/${newId}`);
+
+        return true;
+    }
   return (
   <div className="home">
     <Navbar/>
@@ -48,7 +59,10 @@ export default function Home() {
             <h3>Upload your floor plan</h3>
             <p>Support JPG,PNG,formats up to 10MB</p>
           </div>
-          <p>Upload image</p>
+          <Upload onComplete={handleUploadComplete} />
+          {/* <Upload onComplete={(base64Data)=>{
+            console.log("upload complete",base64Data)
+          }}/> */}
         </div>
 
       </div>
@@ -66,7 +80,9 @@ export default function Home() {
         <div className="projects-grid">
           <div className="project-card group">
             <div className="preview">
-              <img alt="Project"/>
+              <img 
+                src="https://roomify-mlhuk267-dfwu1i.puter.site/projects/1770803585402/rendered.png"
+                alt="Project"/>
               <div className="badge">
                 <span>Community</span>
               </div>
