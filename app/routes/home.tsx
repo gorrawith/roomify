@@ -55,6 +55,16 @@ export default function Home() {
             isCreatingProjectRef.current = false;
         }
     }
+    const handleDelete = async (id: string) => {
+      try {
+          // TODO: ถ้ามี backend
+          // await deleteProject(id);
+
+          setProjects((prev) => prev.filter((p) => p.id !== id));
+      } catch (err) {
+          console.error("Delete failed", err);
+      }
+    };
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -132,16 +142,26 @@ export default function Home() {
                                   <div className="badge">
                                       <span>Community</span>
                                   </div>
+                                  {/* 🔴 ปุ่มลบ */}
+                                  <button
+                                      className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-xs rounded opacity-0 group-hover:opacity-100 transition"
+                                      onClick={(e) => {
+                                          e.stopPropagation(); // ❗ สำคัญ
+                                          handleDelete(id);
+                                      }}
+                                  >
+                                      Delete
+                                  </button>
                               </div>
 
                               <div className="card-body">
                                   <div>
-                                      <h3>{name}</h3>
+                                      {/* <h3>{name}</h3> */}
 
                                       <div className="meta">
                                           <Clock size={12} />
                                           <span>{new Date(timestamp).toLocaleDateString()}</span>
-                                          <span>By JS Mastery</span>
+                                          
                                       </div>
                                   </div>
                                   <div className="arrow">
