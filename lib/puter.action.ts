@@ -57,6 +57,7 @@ export const createProject = async ({ item, visibility = "private" }: CreateProj
         ...rest,
         sourceImage: resolvedSource,
         renderedImage: resolvedRender,
+        
     }
 
     try {
@@ -138,3 +139,9 @@ export const getProjectById = async ({ id }: { id: string }) => {
         return null;
     }
 };
+
+
+
+
+
+

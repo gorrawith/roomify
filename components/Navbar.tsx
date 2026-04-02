@@ -28,15 +28,15 @@ const Navbar = () => {
                 <div className="brand">
                     <Box className="logo"/>
                     <span className="name">
-                        Roomify
+                        3DRoom
                     </span>
                 </div>
-                <ul className="links">
+                {/* <ul className="links">
                     <a href="#">Product</a>
                     <a href="#">Pricing</a>
                     <a href="#">Community</a>
                     <a href="#">Enterprise</a>
-                </ul>
+                </ul> */}
             </div>
             <div className="actions">
                 {isSignedIn ? (
